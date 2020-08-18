@@ -1,8 +1,12 @@
 Hi,
+
 The Robot has successfully completed the Bank Reconciliation process.
-At the start of the process, the robot found var_start_items items to be reconciled.
-After completing the reconciliation the already matched items, var_after_ok items were still undone.
-After the trying to find and match transactions, there are var_after_match items left undone. These remaining transactions need to be handled manually by the officer-in-charge.
+At the start of the process, the robot found VarStartItems items to be reconciled.
+After completing the reconciliation the already matched items, VarAfterOk items were still undone.
+
+After the trying to find and match transactions, there are VarAfterMatch items left undone.
+These remaining transactions need to be handled manually by the officer-in-charge.
+
 
 Regards,
-Sinnergy RPA Robot
+Sinnergy Bot

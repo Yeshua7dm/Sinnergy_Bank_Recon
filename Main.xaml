@@ -74,9 +74,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID5</x:Reference>
+      <x:Reference>__ReferenceID6</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID4">
+    <FlowStep x:Name="__ReferenceID5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">10,144.5</av:Point>
@@ -105,11 +105,9 @@
               <av:PointCollection x:Key="ConnectorLocation">480,195.5 480,225.5 470,225.5 470,254.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Change_Organisation workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Xero_files\Change_Organisation.xaml">
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Change_Organisation workflow" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Xero_files\Change_Organisation.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Organisation">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Organisation_Name" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Organisation">[Organisation_Name]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -162,6 +160,7 @@
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">0,345.5</av:Point>
                           <av:Size x:Key="ShapeSize">200,51</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">200,371 230,371 230,370 370,370</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke LogOut_Sequence workflow" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Xero_files\LogOut_Sequence.xaml">
@@ -174,6 +173,45 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
+                      <FlowStep.Next>
+                        <FlowStep x:Name="__ReferenceID4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">370,344.5</av:Point>
+                              <av:Size x:Key="ShapeSize">200,51</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Send_Outlook_Mail workflow" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Xero_files\Send_Outlook_Mail.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_MailRecipientTo">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Email_Receiver" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_MailSubject" />
+                              <InArgument x:TypeArguments="x:String" x:Key="in_MailMessage" />
+                              <InArgument x:TypeArguments="x:String" x:Key="in_RobotMailAccount">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Email_Sender" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_MailRecipientCc">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Email_CC" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Start_Items">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Start_Items_Number" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_After_OK_Items">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="After_OK_Items" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_After_Find_Items">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="After_FindMatch_Items" />
+                              </InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                        </FlowStep>
+                      </FlowStep.Next>
                     </FlowStep>
                   </FlowStep.Next>
                 </FlowStep>
@@ -187,32 +225,8 @@
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
-    <FlowStep>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">380,354.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,51</av:Size>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Send_Outlook_Mail workflow" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Xero_files\Send_Outlook_Mail.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_MailRecipientTo">[Email_Receiver]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_MailSubject">Sinnergy RPA Robot Bank Reconciliation Report</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_MailMessage" />
-          <InArgument x:TypeArguments="x:String" x:Key="in_RobotMailAccount">[Email_Sender]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_MailRecipientCc">[Email_CC]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_Start_Items">[Start_Items_Number]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_After_OK_Items">[After_OK_Items]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_After_Find_Items">[After_FindMatch_Items]</InArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:InvokeWorkflowFile>
-    </FlowStep>
-    <FlowStep x:Name="__ReferenceID5">
+    <x:Reference>__ReferenceID4</x:Reference>
+    <FlowStep x:Name="__ReferenceID6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">360,14.5</av:Point>
@@ -222,27 +236,13 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Get Assets workflow" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Xero_files\Get Assets.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_Email_Sender">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Email_Sender" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_Email_Receiver">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Email_Receiver" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_Email_CC">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Email_CC" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_Login_URL">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Xero_URL" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="ss:SecureString" x:Key="out_Password">
-            <mva:VisualBasicReference x:TypeArguments="ss:SecureString" ExpressionText="Xero_Password" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_UserMail">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Xero_UserMail" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_OrganisationList">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Organisation_Name" />
-          </OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_Email_Sender">[Email_Sender]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_Email_Receiver">[Email_Receiver]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_Email_CC">[Email_CC]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_Login_URL">[Xero_URL]</OutArgument>
+          <OutArgument x:TypeArguments="ss:SecureString" x:Key="out_Password">[Xero_Password]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_UserMail">[Xero_UserMail]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_OrganisationList">[Organisation_Name]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -251,7 +251,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
       <FlowStep.Next>
-        <x:Reference>__ReferenceID4</x:Reference>
+        <x:Reference>__ReferenceID5</x:Reference>
       </FlowStep.Next>
     </FlowStep>
   </Flowchart>
