@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Test" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Test" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data.DataSetExtensions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_text" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>701,1086</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>654,1926</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Find_and_Match_Sequence_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="25">
@@ -63,111 +63,745 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="518,1021" sap2010:WorkflowViewState.IdRef="Sequence_5">
+  <Sequence sap:VirtualizedContainerService.HintSize="242,249" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="children" />
+      <Variable x:TypeArguments="x:String" Name="s1" />
+      <Variable x:TypeArguments="x:String" Name="s2" />
+      <Variable x:TypeArguments="x:String" Name="s3" />
+      <Variable x:TypeArguments="scg:List(x:Int32)" Name="arrayReturned" />
+      <Variable x:TypeArguments="x:Decimal" Name="sum" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="476,929" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence sap:VirtualizedContainerService.HintSize="380,818" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <Sequence.Variables>
-        <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+        <Variable x:TypeArguments="sd:DataTable" Name="extract" />
+        <Variable x:TypeArguments="x:Int32" Name="rowIndex" />
+        <Variable x:TypeArguments="x:String" Name="PayeeDesc" />
+        <Variable x:TypeArguments="x:Decimal" Name="decimalAmount" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'XeroBankR Page'" sap:VirtualizedContainerService.HintSize="434,837" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="2fef4a20ba171155531fc82381d90c02" Selector="&lt;html app='chrome.exe' title='Xero | Bank Reconciliation | Demo Company (UK)' /&gt;">
-        <ui:BrowserScope.Body>
-          <ActivityAction x:TypeArguments="x:Object">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="380,691" sap2010:WorkflowViewState.IdRef="Sequence_6">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="sd:DataRow[]" Name="rowFound" />
-                <Variable x:TypeArguments="x:Int32" Name="rowNumber" />
-                <Variable x:TypeArguments="x:String" Name="rowcall" />
-                <Variable x:TypeArguments="sd:DataTable" Name="dt" />
-                <Variable x:TypeArguments="x:String" Name="variable1" />
-              </Sequence.Variables>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DisplayName="Extract Structured Data 'DIV  availableTransacti...'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;/row&gt;&lt;column exact='1' name='Date' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='Name' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='3'/&gt;&lt;/column&gt;&lt;column exact='1' name='Reference' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='4'/&gt;&lt;/column&gt;&lt;column exact='1' name='Spent' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5'/&gt;&lt;/column&gt;&lt;column exact='1' name='Received' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='6'/&gt;&lt;webctrl tag='span' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="338,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100" SimulateClick="True">
-                <ui:ExtractData.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a5b7191c-25ef-4808-82b8-370cca18b3f6" InformativeScreenshot="e9bf6fbeb64407ccc360e75e78ca6e65" Selector="&lt;webctrl id='ext-gen133' parentid='sl84c3f84c86f749a3b3ee3ca93e1a23fb' parentname='frmMain' tag='DIV' /&gt;&lt;webctrl id='availableTransactionList' tag='DIV' parentid='ext-gen133' /&gt;" WaitForReady="COMPLETE">
-                    <ui:Target.TimeoutMS>
-                      <InArgument x:TypeArguments="x:Int32" />
-                    </ui:Target.TimeoutMS>
-                  </ui:Target>
-                </ui:ExtractData.Target>
-              </ui:ExtractData>
-              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,160" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-                <ui:MultipleAssign.AssignOperations>
-                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
-                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                      <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[rowcall]</OutArgument>
-                      </ui:AssignOperation.To>
-                      <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String" xml:space="preserve">[ExtractDataTable.Rows.
-IndexOf(ExtractDataTable.AsEnumerable().
-Where(Function(row) Convert.ToDecimal(row("Received").ToString.Replace("GBP","").Trim) &lt; 1.00 AndAlso Convert.ToDecimal(row("Received").ToString.Replace("GBP","").Trim) &gt; -1.00).
-FirstOrDefault()).ToString]</InArgument>
-                      </ui:AssignOperation.Value>
-                    </ui:AssignOperation>
-                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
-                      <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:Int32">[rowNumber]</OutArgument>
-                      </ui:AssignOperation.To>
-                      <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:Int32" xml:space="preserve">[ExtractDataTable.Rows.
-IndexOf(ExtractDataTable.AsEnumerable().
-Where(Function(row) Convert.ToDecimal(row("Received").ToString.Replace("GBP","").Trim) &gt;100.00).
-FirstOrDefault())]</InArgument>
-                      </ui:AssignOperation.Value>
-                    </ui:AssignOperation>
-                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
-                      <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[variable1]</OutArgument>
-                      </ui:AssignOperation.To>
-                      <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String">[Convert.ToDecimal(ExtractDataTable(rowNumber)("Received").ToString.Replace("GBP","").Trim).ToString]</InArgument>
-                      </ui:AssignOperation.Value>
-                    </ui:AssignOperation>
-                  </scg:List>
-                </ui:MultipleAssign.AssignOperations>
-              </ui:MultipleAssign>
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[rowcall]" />
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[variable1]" />
-              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="338,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,407" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" SimulateClick="{x:Null}" DataTable="[extract]" DisplayName="Extract Transaction List into DT" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;/row&gt;&lt;column exact='1' name='Date' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='Name' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='3'/&gt;&lt;/column&gt;&lt;column exact='1' name='Reference' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='4'/&gt;&lt;/column&gt;&lt;column exact='1' name='Spent' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5'/&gt;&lt;/column&gt;&lt;column exact='1' name='Received' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='6'/&gt;&lt;webctrl tag='span' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="338,106" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="0">
+        <ui:ExtractData.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cc91bff7-c762-4973-a124-5df4d5e99f56" InformativeScreenshot="b470b270e4135dc0a3a569c4dfed4e92" Selector="&lt;html app='chrome.exe' title='Xero | Bank Reconciliation | Demo Company (UK)' /&gt;&lt;webctrl id='availableTransactionList' tag='DIV' /&gt;" WaitForReady="COMPLETE">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+          </ui:Target>
+        </ui:ExtractData.Target>
+      </ui:ExtractData>
+      <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'SPAN'" sap:VirtualizedContainerService.HintSize="338,106" sap2010:WorkflowViewState.IdRef="GetValue_2">
+        <ui:GetValue.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e96b6c4c-72b1-454a-850b-a94ec823e8d5" InformativeScreenshot="84c4d8fef88fc195f79c24743aedfd23" Selector="&lt;html app='chrome.exe' title='Xero | Bank Reconciliation | Demo Company (UK)' /&gt;&lt;webctrl aaname='0017-Part' parentid='ext-gen120' tag='SPAN' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:GetValue.Target>
+        <ui:GetValue.Value>
+          <OutArgument x:TypeArguments="x:String">[PayeeDesc]</OutArgument>
+        </ui:GetValue.Value>
+      </ui:GetValue>
+      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,129" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[PayeeDesc]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[PayeeDesc.Trim]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_20">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:Decimal">[decimalAmount]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:Decimal">[Convert.ToDecimal("100.00")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+      </ui:MultipleAssign>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim similar As String = Nothing&#xD;&#xA;Dim IndexArray As New List(Of Int32)&#xD;&#xA;Dim item As Decimal = 0&#xD;&#xA;&#xD;&#xA;For Each row As DataRow In dt.Rows&#xD;&#xA;&#x9;If Convert.ToDecimal(row(SpentReceived).ToString.Trim.Replace(&quot;GBP&quot;,&quot;&quot;).Replace(&quot; &quot;,&quot;&quot;)) &gt; decimalAmount Then&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;Dim reference As String = row(&quot;Reference&quot;).ToString.Trim&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9; For i As Integer = 0 To PayeeDesc.Length - 1&#xD;&#xA;&#x9;        Dim a_subString As String = PayeeDesc.Substring(0, i + 1)&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;        If reference.Contains(a_subString) Then&#xD;&#xA;&#x9;            similar = a_subString&#xD;&#xA;&#x9;        End If&#xD;&#xA;&#x9;    Next&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;    Dim result As Char() = similar.ToCharArray()&#xD;&#xA;&#x9;&#x9;Dim foundString As String = New String(result)&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;If foundString.Length &gt;= 4 Then&#xD;&#xA;&#x9;&#x9;&#x9;rowIndex = dt.Rows.IndexOf(row)&#xD;&#xA;&#x9;&#x9;&#x9;Exit For&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;End If&#x9;&#xD;&#xA;Next row" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="338,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="dt">
+            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="extract" />
+          </InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="rowIndex">
+            <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="rowIndex" />
+          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="PayeeDesc">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="PayeeDesc" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="SpentReceived">
+            <Literal x:TypeArguments="x:String">Received</Literal>
+          </InArgument>
+          <InArgument x:TypeArguments="x:Decimal" x:Key="decimalAmount">
+            <mva:VisualBasicValue x:TypeArguments="x:Decimal" ExpressionText="decimalAmount" />
+          </InArgument>
+        </ui:InvokeCode.Arguments>
+      </ui:InvokeCode>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="[rowIndex.ToString]" />
+    </Sequence>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="518,1776" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="476,1684" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'XeroBankR Page'" sap:VirtualizedContainerService.HintSize="434,1592" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="2fef4a20ba171155531fc82381d90c02" Selector="&lt;html app='chrome.exe' title='Xero | Bank Reconciliation | Demo Company (UK)' /&gt;">
+              <ui:BrowserScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,1446" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="sd:DataRow[]" Name="rowFound" />
+                      <Variable x:TypeArguments="x:Int32" Name="rowNumber" />
+                      <Variable x:TypeArguments="x:String" Name="rowcall" />
+                      <Variable x:TypeArguments="sd:DataTable" Name="dt" />
+                      <Variable x:TypeArguments="x:String" Name="variable1" />
+                      <Variable x:TypeArguments="x:Decimal" Name="decimalAmount" />
+                      <Variable x:TypeArguments="x:String" Name="strinf_dt" />
+                      <Variable x:TypeArguments="sd1:EnumerableRowCollection(sd:DataRow)" Name="row" />
+                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:OutputDataTable DataTable="[ExtractDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[variable1]" />
-                    <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="sheet.csv" sap:VirtualizedContainerService.HintSize="334,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2" />
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[rowNumber]" />
+                    <Sequence sap:VirtualizedContainerService.HintSize="334,66" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Decimal">[Amount_Found_Sum]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Decimal">[Convert.ToDecimal(Amount_Array.Sum)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <If Condition="[Reconcile_DONE = False AndAlso Amount_Found_Sum = Convert.ToDecimal(System.Text.RegularExpressions.Regex.Replace(Payee_Amount,&quot;\s&quot;,&quot;&quot;))]" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="454,761" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Amount_Children]">
+                              <ui:ForEach.Body>
+                                <ActivityAction x:TypeArguments="ui:UiElement">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ui:UiElement" Name="item" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Click the Check Boxes" sap:VirtualizedContainerService.HintSize="418,627" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="376,61" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="[item.Selector.ToString]" />
+                                    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="id" DisplayName="Get Attribute" sap:VirtualizedContainerService.HintSize="376,96" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+                                      <ui:GetAttribute.Result>
+                                        <OutArgument x:TypeArguments="x:String">[Table_Row_ID]</OutArgument>
+                                      </ui:GetAttribute.Result>
+                                      <ui:GetAttribute.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[item]" Id="07aee81b-bbd1-48bc-a2c2-9d5c23f3879c">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:GetAttribute.Target>
+                                    </ui:GetAttribute>
+                                    <Sequence DisplayName="Go On Reconcile Received" sap:VirtualizedContainerService.HintSize="376,298" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[selector]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">["&lt;webctrl id='checkbox*' tag='DIV' class='checkbox' parentid='"+Table_Row_ID+"' /&gt;"]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click CheckBox" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                        <ui:Click.CursorPosition>
+                                          <ui:CursorPosition Position="Center">
+                                            <ui:CursorPosition.OffsetX>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetX>
+                                            <ui:CursorPosition.OffsetY>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetY>
+                                          </ui:CursorPosition>
+                                        </ui:Click.CursorPosition>
+                                        <ui:Click.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a01975de-66e8-4e16-888b-73eed840b425" InformativeScreenshot="10c8bbe6838a1e9ef3a0a03151a82d47" Selector="[selector]">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:Click.Target>
+                                      </ui:Click>
+                                    </Sequence>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:ForEach.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ForEach>
+                            <Assign sap:VirtualizedContainerService.HintSize="454,64" sap2010:WorkflowViewState.IdRef="Assign_5">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[selector]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;webctrl id='"+Find_Match_DropDown_ID+"' parentid='"+MainRow_ID+"' parentname='frmMain' tag='DIV' /&gt;"+
+"&lt;webctrl tag='A' aaname='Reconcile' class='reconcileButton xbtn green*' id='ext-gen*' parentid='"+Find_Match_DropDown_ID+"' /&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Reconcile" sap:VirtualizedContainerService.HintSize="454,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35375bbc-45dc-4770-a72e-f933be304e30" InformativeScreenshot="ff48dd54bb7e1eabe5cd3db277d71171" Selector="[selector]">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <Assign sap:VirtualizedContainerService.HintSize="454,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[Reconcile_DONE]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="454,61" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="[&quot;Reconciliation Status: &quot; + Reconcile_DONE.ToString]" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <If Condition="[Reconcile_DONE]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_1">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Sequence DisplayName="Click and Enter DISCUSS Text" sap:VirtualizedContainerService.HintSize="380,787" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="Discuss_Text" />
+                                    <Variable x:TypeArguments="x:String" Name="TextArea_Selector" />
+                                  </Sequence.Variables>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,160" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                                    <ui:MultipleAssign.AssignOperations>
+                                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                                          <ui:AssignOperation.To>
+                                            <OutArgument x:TypeArguments="x:String">[selector]</OutArgument>
+                                          </ui:AssignOperation.To>
+                                          <ui:AssignOperation.Value>
+                                            <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;webctrl css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' id='"+MainRow_ID+"' parentid='statementLines' parentname='frmMain' tag='DIV' /&gt;"+
+"&lt;webctrl id='ext-gen*' tag='A' aaname='*Discuss*' class='t4' /&gt;"]</InArgument>
+                                          </ui:AssignOperation.Value>
+                                        </ui:AssignOperation>
+                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                                          <ui:AssignOperation.To>
+                                            <OutArgument x:TypeArguments="x:String">[Discuss_Text]</OutArgument>
+                                          </ui:AssignOperation.To>
+                                          <ui:AssignOperation.Value>
+                                            <InArgument x:TypeArguments="x:String">No Matching Transaction Found! This reconciliation has to be done manually</InArgument>
+                                          </ui:AssignOperation.Value>
+                                        </ui:AssignOperation>
+                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                                          <ui:AssignOperation.To>
+                                            <OutArgument x:TypeArguments="x:String">[TextArea_Selector]</OutArgument>
+                                          </ui:AssignOperation.To>
+                                          <ui:AssignOperation.Value>
+                                            <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;webctrl css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' id='"+MainRow_ID+"' parentid='statementLines' parentname='frmMain' tag='DIV' /&gt;"+
+"&lt;webctrl id='commentsText*' tag='TEXTAREA' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;textarea' /&gt;"]</InArgument>
+                                          </ui:AssignOperation.Value>
+                                        </ui:AssignOperation>
+                                      </scg:List>
+                                    </ui:MultipleAssign.AssignOperations>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:MultipleAssign>
+                                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[selector]" />
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Discuss'" sap:VirtualizedContainerService.HintSize="338,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="214b7e4d-2bfd-4242-bc7c-25195a69e388" InformativeScreenshot="55d7888e05df0187b63eb19f646e60ef" Selector="[selector]" WaitForReady="COMPLETE">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:Click>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="338,66" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="a" KeyModifiers="Ctrl">
+                                      <ui:SendHotkey.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="69451f89-b01a-4d79-a3a6-94714d2615ab" Selector="[TextArea_Selector]">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:SendHotkey.Target>
+                                    </ui:SendHotkey>
+                                    <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="back" KeyModifiers="Ctrl" SpecialKey="True">
+                                      <ui:SendHotkey.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="69451f89-b01a-4d79-a3a6-94714d2615ab" Selector="[TextArea_Selector]">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:SendHotkey.Target>
+                                    </ui:SendHotkey>
+                                  </Sequence>
+                                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'TEXTAREA  commentsText8...'" EmptyField="True" sap:VirtualizedContainerService.HintSize="338,51" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[Discuss_Text]">
+                                    <ui:TypeInto.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0c6535ed-1528-4cf2-8e44-8ccff32ed866" InformativeScreenshot="fb4a8ff853d49620b9f18d3f676d9c4b" Selector="[TextArea_Selector]" WaitForReady="NONE">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                      </ui:Target>
+                                    </ui:TypeInto.Target>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:TypeInto>
+                                  <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="338,51" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="s" KeyModifiers="Ctrl">
+                                    <ui:SendHotkey.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6e229250-10ff-4823-a46e-967ae2b2329b" Selector="[TextArea_Selector]" WaitForReady="COMPLETE">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                      </ui:Target>
+                                    </ui:SendHotkey.Target>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:SendHotkey>
+                                </Sequence>
+                                <Sequence DisplayName="Click Cancel" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign DisplayName="Assign Selector" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[selector]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;webctrl id='"+MainRow_ID+"' parentid='statementLines' parentname='frmMain' tag='DIV' /&gt;"+
+"&lt;webctrl css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' id='"+Find_Match_DropDown_ID+"' parentid='"+MainRow_ID+"' parentname='frmMain' tag='DIV' /&gt;"+
+"&lt;webctrl css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='"+Find_Match_DropDown_ID+"' parentname='frmMain' tag='DIV' idx='*' /&gt;"+
+"&lt;webctrl id='ext-gen*' tag='A' aaname='Cancel' parentid='"+Find_Match_DropDown_ID+"' class='cancelButton*' /&gt;"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <WriteLine DisplayName="Write Selector" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_17" Text="[&quot;Cancel Selector&quot; + selector]" />
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Cancel Button Click" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="751cf3ed-b4ae-446c-b91d-f98fa254d4fc" InformativeScreenshot="df5bbd30839783405c4054d88ebf7002" Selector="[selector]">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                        <ui:Target.WaitForReady>
+                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                        </ui:Target.WaitForReady>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                </Sequence>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                    <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" SimulateClick="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DisplayName="Extract Structured Data 'DIV  availableTransacti...'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;/row&gt;&lt;column exact='1' name='Date' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='Name' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='3'/&gt;&lt;/column&gt;&lt;column exact='1' name='Reference' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='4'/&gt;&lt;/column&gt;&lt;column exact='1' name='Spent' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5'/&gt;&lt;/column&gt;&lt;column exact='1' name='Received' attr='text'&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div'/&gt;&lt;webctrl tag='div' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='6'/&gt;&lt;webctrl tag='span' css-selector='body&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
+                      <ui:ExtractData.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a5b7191c-25ef-4808-82b8-370cca18b3f6" InformativeScreenshot="b470b270e4135dc0a3a569c4dfed4e92" Selector="&lt;webctrl id='availableTransactionList' tag='DIV' /&gt;" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:ExtractData.Target>
+                    </ui:ExtractData>
+                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'DIV  ext-gen125'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5d23035c-8cd5-43e6-8734-c09773469cf3" InformativeScreenshot="ea581428d90e5a3da4dce16a1a6a8084" Selector="&lt;webctrl id='ext-gen125' tag='DIV' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[s3]</OutArgument>
+                      </ui:GetValue.Value>
+                    </ui:GetValue>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Decimal">[decimalAmount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Decimal">[Convert.ToDecimal(s3.Trim.Replace(" ", ""))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="380,252" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,160" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:Decimal">[decimalAmount]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:Decimal">[Convert.ToDecimal(s3.Trim.Replace(" ", ""))]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[rowNumber]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:Int32" xml:space="preserve">[ExtractDataTable.Rows.
+IndexOf(ExtractDataTable.AsEnumerable().
+Where(Function(row) Convert.ToDecimal(row("Spent").ToString.Replace("GBP","").Trim) = decimalAmount).
+FirstOrDefault())]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[rowcall]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[ExtractDataTable.Rows.
+IndexOf(ExtractDataTable.AsEnumerable().
+Where(Function(row) Convert.ToDecimal(row("Spent").ToString.Replace("GBP","").Trim) - decimalAmount &lt; 1.00 AndAlso Convert.ToDecimal(row("Spent").ToString.Replace("GBP","").Trim) - decimalAmount &gt; -1.00).
+FirstOrDefault()).ToString]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                          </ui:MultipleAssign>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim IndexArray As New List(Of Int32)&#xD;&#xA;Dim arrayNothing As New List(Of Int32)&#xD;&#xA;Dim SumTotal As Decimal = 0&#xD;&#xA;Dim item As Decimal = 0&#xD;&#xA;&#xD;&#xA;For Each row As DataRow In dt.Rows&#x9;&#xD;&#xA;&#x9;If decimalAmount - Convert.ToDecimal(row(&quot;Received&quot;).ToString.Trim.Replace(&quot;GBP&quot;,&quot;&quot;).Replace(&quot; &quot;,&quot;&quot;)) &gt;= 1 Then&#xD;&#xA;&#x9;&#x9;IndexArray.Add(dt.Rows.IndexOf(row))&#xD;&#xA;&#x9;End If&#x9;&#xD;&#xA;Next row&#xD;&#xA;&#xD;&#xA;For Each index As Int32 In IndexArray&#xD;&#xA;&#x9;item = Convert.ToDecimal(dt(index)(&quot;Received&quot;).ToString.Trim.Replace(&quot;GBP&quot;,&quot;&quot;).Replace(&quot; &quot;,&quot;&quot;))&#xD;&#xA;&#x9;SumTotal = item + SumTotal&#xD;&#xA;Next index&#xD;&#xA;&#xD;&#xA;If SumTotal = decimalAmount Then&#xD;&#xA;&#x9;arrayReturned = IndexArray&#xD;&#xA;&#x9;total = SumTotal&#xD;&#xA;Else&#xD;&#xA;&#x9;arrayReturned = arrayNothing&#xD;&#xA;&#x9;total = SumTotal&#xD;&#xA;End If" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                      <ui:InvokeCode.Arguments>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt">[ExtractDataTable]</InArgument>
+                        <OutArgument x:TypeArguments="scg:List(x:Int32)" x:Key="arrayReturned">[arrayReturned]</OutArgument>
+                        <InArgument x:TypeArguments="x:Decimal" x:Key="decimalAmount">[decimalAmount]</InArgument>
+                        <OutArgument x:TypeArguments="x:Decimal" x:Key="total">[sum]</OutArgument>
+                      </ui:InvokeCode.Arguments>
+                    </ui:InvokeCode>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[decimalAmount.ToString]" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_11" Text="[arrayReturned.Count.ToString]" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[String.Join(&quot; &quot;,arrayReturned)]" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[sum.ToString]" />
+                    <Sequence DisplayName="Get All Received Amounts" sap:VirtualizedContainerService.HintSize="334,66" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="416,1007" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Amount_Children]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="ui:UiElement">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="ui:UiElement" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="380,873" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="[item.Selector.ToString]" />
+                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="id" DisplayName="Get Attribute" sap:VirtualizedContainerService.HintSize="338,96" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
+                                <ui:GetAttribute.Result>
+                                  <OutArgument x:TypeArguments="x:String">[Table_Row_ID]</OutArgument>
+                                </ui:GetAttribute.Result>
+                                <ui:GetAttribute.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[item]" Id="07aee81b-bbd1-48bc-a2c2-9d5c23f3879c">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:GetAttribute.Target>
+                              </ui:GetAttribute>
+                              <Assign sap:VirtualizedContainerService.HintSize="338,64" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[selector]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;webctrl id='"+Table_Row_ID+"' parentid='availableTransactionList' tag='DIV' /&gt;"+
+"&lt;webctrl id='moneyin*' tag='SPAN' parentid='"+Table_Row_ID+"' /&gt;"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="aaname" DisplayName="Get Amount for Money Received" sap:VirtualizedContainerService.HintSize="338,134" sap2010:WorkflowViewState.IdRef="GetAttribute_3">
+                                <ui:GetAttribute.Result>
+                                  <OutArgument x:TypeArguments="x:String">[aaName]</OutArgument>
+                                </ui:GetAttribute.Result>
+                                <ui:GetAttribute.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d97843d3-ad3a-4ae6-b581-21a767cf20e4" InformativeScreenshot="566ce41495cb0db3d35253b00b595464" Selector="[selector]">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:GetAttribute.Target>
+                              </ui:GetAttribute>
+                              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,160" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+                                <ui:MultipleAssign.AssignOperations>
+                                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:Decimal">[Payee_Amount_Decimal]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:Decimal">[Convert.ToDecimal(System.Text.RegularExpressions.Regex.Replace(Payee_Amount,"\s",""))]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:Decimal">[Amount_item]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:Decimal">[Convert.ToDecimal(aaName)]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:Decimal">[Amount_Difference]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:Decimal">[Payee_Amount_Decimal - Amount_item]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                  </scg:List>
+                                </ui:MultipleAssign.AssignOperations>
+                              </ui:MultipleAssign>
+                              <Sequence sap:VirtualizedContainerService.HintSize="338,66" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[Amount_Difference &gt; 1]" sap:VirtualizedContainerService.HintSize="484,209" sap2010:WorkflowViewState.IdRef="If_3">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <AddToCollection x:TypeArguments="x:Double" Collection="[Amount_Array]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[Amount_item]" />
+                                  </If.Then>
+                                  <If.Else>
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230,61" sap2010:WorkflowViewState.IdRef="WriteLine_19" Text="[Amount_item.ToString + &quot; is more than Payee Amount: &quot; + Payee_Amount]" />
+                                  </If.Else>
+                                </If>
+                                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[Reconcile_DONE]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ForEach>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="WriteLine_20" Text="[&quot;[&quot; + String.Join(&quot;, &quot;,Amount_Array) + &quot;]&quot;]" />
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="[&quot;Reconciliation Status: &quot; + Reconcile_DONE.ToString]" />
+                    </Sequence>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,407" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:OutputDataTable DataTable="[ExtractDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[s3]" />
+                          <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="sheet.csv" sap:VirtualizedContainerService.HintSize="334,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2" />
+                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[rowNumber]" />
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
                   </Sequence>
-                </ui:CommentOut.Body>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:CommentOut>
-            </Sequence>
-          </ActivityAction>
-        </ui:BrowserScope.Body>
-      </ui:BrowserScope>
-    </Sequence>
+                </ActivityAction>
+              </ui:BrowserScope.Body>
+            </ui:BrowserScope>
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
   </Sequence>
 </Activity>
